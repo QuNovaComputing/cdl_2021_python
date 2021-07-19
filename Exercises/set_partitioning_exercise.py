@@ -19,6 +19,7 @@ Problem: Partition the set [-5, 9, 4] such that the sum of the subsets are equal
 # 1. Import packages
 # from dwave.system import DWaveSampler, EmbeddingComposite
 from neal import SimulatedAnnealingSampler
+import dwave.inspector as inspector
 
 # 2. TODO: Define the problem by adding in the biases for each term in the QUBO dictionary
 Q = {('x0', 'x0'): 260, ('x1', 'x1'): 36, ('x2', 'x2'): -64,
@@ -30,11 +31,9 @@ sampler = SimulatedAnnealingSampler()
 
 # 4. Solve the problem
 # sampleset = solver.sample_qubo(Q, chain_strength=50, num_reads=100)
-response = sampler.sample_qubo(Q, num_reads=100,
-                               num_sweeps=1000,
-                               initial_states=None,
-                               beta_range=[10, 100])
+response = sampler.sample_qubo(Q, num_reads=100)
 
 # 5. Interpret results
 # print(sampleset)
+# inspector.show(Q, response)
 print(response)
